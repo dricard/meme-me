@@ -132,12 +132,14 @@ class EditMemeViewController: UIViewController, UINavigationControllerDelegate, 
             instructionsLabel.text = "Choose an image from the Album \n(no camera on this device)"
         }
         self.tabBarController?.tabBar.hidden = true
+        self.navigationController?.navigationBar.hidden = true
         subscribeToKeyboardShowNotifications()
     }
     
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
         unsubscribeToKeyboardShowNotifications()
+        self.navigationController?.navigationBar.hidden = false
     }
     
     override func shouldAutorotate() -> Bool {
