@@ -14,31 +14,60 @@ class CollectionViewController: UICollectionViewController {
     @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
     @IBOutlet weak var aCollectionView: UICollectionView!
     
+    var screenWidth:CGFloat=0
+    var screenHeight:CGFloat=0
+
     func viewDidload() {
         super.viewDidLoad()
+
+        print("THIS IS NEVER CALLED")
+        
+     }
+    
+    override func didRotateFromInterfaceOrientation(fromInterfaceOrientation: UIInterfaceOrientation) {
+        getScreenSize()
+        setTheFlowLayout()
+
+    }
+
+    func getScreenSize(){
+        screenWidth = self.view.frame.size.width
+        screenHeight = self.view.frame.size.height
+        print("SCREEN RESOLUTION: "+screenWidth.description+" x "+screenHeight.description)
+    }
+    
+    func setTheFlowLayout() {
         
         let space: CGFloat = 3.0
-        let dimension = (self.view.frame.size.width - (3 * space)) / 2.0
+        var dimensionX, dimensionY: CGFloat
         
-        print("screen width = \(self.view.frame.size.width); dimension = \(dimension)")
+        if screenHeight > screenWidth {
+            dimensionX = (screenWidth - (1 * space)) / 2.0
+            dimensionY = (screenHeight - (5 * space)) / 4.0
+            
+            print("PROTRAIT: screen width = \(screenWidth); screen height = \(screenHeight); dimensionX = \(dimensionX); dimensionY = \(dimensionY)")
+            
+        } else {
+            dimensionY = (screenHeight - self.tabBarController!.tabBar.frame.size.height - (2 * space)) / 2.0
+            dimensionX = (screenWidth - (5 * space)) / 4.0
+            
+            print("LANDSCAPE: screen width = \(screenWidth); screen height = \(screenHeight); dimensionX = \(dimensionX); dimensionY = \(dimensionY)")
+            
+        }
+
         
         flowLayout.minimumInteritemSpacing = space
         flowLayout.minimumLineSpacing = space
-        flowLayout.itemSize = CGSizeMake(dimension, dimension)
+        flowLayout.itemSize = CGSizeMake(dimensionX, dimensionY)
+
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.hidden = false
-        let space: CGFloat = 3.0
-        let dimensionX = (self.view.frame.size.width - (3 * space)) / 2.0
-        let dimensionY = (self.view.frame.size.height - (5 * space)) / 4.0
-
-        print("screen width = \(self.view.frame.size.width); dimensionX = \(dimensionX); dimensionY = \(dimensionY)")
+        getScreenSize()
+        setTheFlowLayout()
         
-        flowLayout.minimumInteritemSpacing = space
-        flowLayout.minimumLineSpacing = space
-        flowLayout.itemSize = CGSizeMake(dimensionX, dimensionY)
         self.aCollectionView.reloadData()
         
     }
@@ -48,7 +77,8 @@ class CollectionViewController: UICollectionViewController {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("SentMemeCollectionViewCell", forIndexPath: indexPath) as! SentMemeCollectionViewCell
         let meme = gMemes.memes[indexPath.item]
         
-        cell.cvImage?.image = meme.memedImage
+        cell.cvImage!.contentMode = .ScaleAspectFit
+        cell.cvImage!.image = meme.memedImage
         
         return cell
         

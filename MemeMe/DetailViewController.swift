@@ -18,6 +18,7 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         
         if let image = memedImageToDisplay {
+            detailViewImage.contentMode = .ScaleAspectFit
             detailViewImage.image = image
         }
     }

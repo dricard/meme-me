@@ -41,7 +41,6 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let numberOfMemes = gMemes.memes.count
-            print("Number of memes is \(numberOfMemes)")
             return numberOfMemes
     }
 
