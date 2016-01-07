@@ -9,10 +9,10 @@
 import Foundation
 import UIKit
 
-var gMemes: Memes?
+var gMemes = Memes()
 
 struct Memes {
     
-    var memes: [Meme]
+    var memes = [Meme]()
     
 }

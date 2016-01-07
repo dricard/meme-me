@@ -85,7 +85,7 @@ class EditMemeViewController: UIViewController, UINavigationControllerDelegate, 
     
     func save() {
         let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, memedImage: generateMemedImage(), originalImage: imageViewer.image!)
-        gMemes!.memes.append(meme)
+        gMemes.memes.append(meme)
     }
     
     func generateMemedImage() -> UIImage {
@@ -131,7 +131,7 @@ class EditMemeViewController: UIViewController, UINavigationControllerDelegate, 
         if !cameraButton.enabled {
             instructionsLabel.text = "Choose an image from the Album \n(no camera on this device)"
         }
-        
+        self.tabBarController?.tabBar.hidden = true
         subscribeToKeyboardShowNotifications()
     }
     

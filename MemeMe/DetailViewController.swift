@@ -17,8 +17,13 @@ class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         
-        if let image = memedImageToDisplay{
+        if let image = memedImageToDisplay {
             detailViewImage.image = image
         }
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tabBarController?.tabBar.hidden = true
     }
 }
