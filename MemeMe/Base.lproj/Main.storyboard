@@ -78,7 +78,7 @@
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="zZW-N1-r9m">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="RFL-yq-Y2D">
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="3" minimumInteritemSpacing="3" id="RFL-yq-Y2D">
                             <size key="itemSize" width="227" height="152"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -96,11 +96,11 @@
                                     <rect key="frame" x="0.0" y="0.0" width="227" height="152"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vn5-r3-k7i">
-                                            <rect key="frame" x="8" y="7" width="211" height="138"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vn5-r3-k7i">
+                                            <rect key="frame" x="8" y="8" width="211" height="136"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" priority="500" constant="138" id="l11-3a-s3y"/>
-                                                <constraint firstAttribute="width" priority="500" constant="158" id="rWi-23-qnw"/>
+                                                <constraint firstAttribute="height" relation="lessThanOrEqual" priority="500" constant="138" id="l11-3a-s3y"/>
+                                                <constraint firstAttribute="width" relation="lessThanOrEqual" priority="500" constant="158" id="rWi-23-qnw"/>
                                             </constraints>
                                         </imageView>
                                     </subviews>
@@ -265,7 +265,7 @@ or take a picture</string>
                             <constraint firstItem="uQG-gK-5Dc" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="UOQ-ZS-eaH" secondAttribute="leadingMargin" constant="39" id="17E-L8-FjO"/>
                             <constraint firstItem="uQG-gK-5Dc" firstAttribute="top" relation="greaterThanOrEqual" secondItem="K5x-rF-ebW" secondAttribute="bottom" constant="54" id="81d-Mj-MWA"/>
                             <constraint firstItem="Jt9-Oe-ba5" firstAttribute="centerX" secondItem="UOQ-ZS-eaH" secondAttribute="centerX" id="JVa-gR-YBC"/>
-                            <constraint firstItem="66n-df-gSy" firstAttribute="top" relation="lessThanOrEqual" secondItem="uQG-gK-5Dc" secondAttribute="bottom" constant="68" id="K0a-kg-YHF"/>
+                            <constraint firstItem="66n-df-gSy" firstAttribute="top" relation="greaterThanOrEqual" secondItem="uQG-gK-5Dc" secondAttribute="bottom" constant="68" id="K0a-kg-YHF"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="uQG-gK-5Dc" secondAttribute="trailing" constant="28" id="NYm-Us-mle"/>
                             <constraint firstItem="Jt9-Oe-ba5" firstAttribute="centerY" secondItem="UOQ-ZS-eaH" secondAttribute="centerY" id="Pxu-1h-yyX"/>
                             <constraint firstItem="u7J-oj-NMx" firstAttribute="top" secondItem="uQG-gK-5Dc" secondAttribute="top" id="VJf-cy-Wuv"/>
