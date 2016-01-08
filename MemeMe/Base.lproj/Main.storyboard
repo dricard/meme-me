@@ -96,15 +96,23 @@
                                     <rect key="frame" x="0.0" y="0.0" width="227" height="152"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vn5-r3-k7i">
-                                            <rect key="frame" x="8" y="12" width="211" height="128"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vn5-r3-k7i">
+                                            <rect key="frame" x="8" y="7" width="211" height="138"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" priority="500" constant="138" id="l11-3a-s3y"/>
+                                                <constraint firstAttribute="width" priority="500" constant="158" id="rWi-23-qnw"/>
+                                            </constraints>
                                         </imageView>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <constraints>
+                                    <constraint firstAttribute="leadingMargin" relation="lessThanOrEqual" secondItem="vn5-r3-k7i" secondAttribute="leading" id="CfL-Kx-HcK"/>
                                     <constraint firstItem="vn5-r3-k7i" firstAttribute="centerY" secondItem="GOp-V2-pQG" secondAttribute="centerY" id="J98-wJ-am9"/>
                                     <constraint firstItem="vn5-r3-k7i" firstAttribute="centerX" secondItem="GOp-V2-pQG" secondAttribute="centerX" id="TtJ-eS-D8Z"/>
+                                    <constraint firstAttribute="trailingMargin" relation="lessThanOrEqual" secondItem="vn5-r3-k7i" secondAttribute="trailing" id="Veu-56-Zjo"/>
+                                    <constraint firstAttribute="bottomMargin" relation="lessThanOrEqual" secondItem="vn5-r3-k7i" secondAttribute="bottom" id="YR0-qW-aAb"/>
+                                    <constraint firstItem="vn5-r3-k7i" firstAttribute="top" relation="lessThanOrEqual" secondItem="GOp-V2-pQG" secondAttribute="topMargin" id="x0K-KN-QW6"/>
                                 </constraints>
                                 <connections>
                                     <outlet property="cvImage" destination="vn5-r3-k7i" id="9aq-4R-Irh"/>
@@ -146,16 +154,20 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pje-Dv-rfr">
-                                <rect key="frame" x="127" y="183" width="347" height="234"/>
+                                <rect key="frame" x="57" y="64" width="486" height="471"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="200" id="DFm-U1-2af"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="hhR-zc-RgN"/>
+                                </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="pje-Dv-rfr" secondAttribute="trailing" constant="20" id="67H-aZ-3Em"/>
+                            <constraint firstAttribute="trailingMargin" relation="lessThanOrEqual" secondItem="pje-Dv-rfr" secondAttribute="trailing" constant="20" id="67H-aZ-3Em"/>
                             <constraint firstItem="pje-Dv-rfr" firstAttribute="centerX" secondItem="2Di-tC-CJi" secondAttribute="centerX" id="793-2R-SBu"/>
-                            <constraint firstItem="pje-Dv-rfr" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="2Di-tC-CJi" secondAttribute="leadingMargin" constant="20" id="G6u-W9-vsS"/>
-                            <constraint firstItem="3oj-RI-RHN" firstAttribute="top" relation="greaterThanOrEqual" secondItem="pje-Dv-rfr" secondAttribute="bottom" constant="45" id="RsQ-vx-kAU"/>
-                            <constraint firstItem="pje-Dv-rfr" firstAttribute="top" relation="greaterThanOrEqual" secondItem="lX0-qJ-aZQ" secondAttribute="bottom" constant="45" id="icc-71-iR9"/>
+                            <constraint firstItem="pje-Dv-rfr" firstAttribute="leading" relation="lessThanOrEqual" secondItem="2Di-tC-CJi" secondAttribute="leadingMargin" constant="20" id="G6u-W9-vsS"/>
+                            <constraint firstItem="3oj-RI-RHN" firstAttribute="top" relation="lessThanOrEqual" secondItem="pje-Dv-rfr" secondAttribute="bottom" constant="10" id="RsQ-vx-kAU"/>
+                            <constraint firstItem="pje-Dv-rfr" firstAttribute="top" relation="lessThanOrEqual" secondItem="lX0-qJ-aZQ" secondAttribute="bottom" constant="10" id="icc-71-iR9"/>
                             <constraint firstItem="pje-Dv-rfr" firstAttribute="centerY" secondItem="2Di-tC-CJi" secondAttribute="centerY" id="rvQ-7M-BgD"/>
                         </constraints>
                     </view>
