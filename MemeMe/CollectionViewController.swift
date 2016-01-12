@@ -25,8 +25,8 @@ class CollectionViewController: UICollectionViewController {
     }
 
     func getScreenSize(){
-        screenWidth = self.view.frame.size.width
-        screenHeight = self.view.frame.size.height
+        screenWidth = view.frame.size.width
+        screenHeight = view.frame.size.height
     }
     
     func setTheFlowLayout() {
