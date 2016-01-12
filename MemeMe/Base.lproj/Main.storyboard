@@ -149,7 +149,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pje-Dv-rfr">
-                                <rect key="frame" x="0.0" y="40" width="600" height="580"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="620"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="200" id="DFm-U1-2af"/>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="hhR-zc-RgN"/>
@@ -161,7 +161,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="pje-Dv-rfr" secondAttribute="trailing" constant="-20" id="67H-aZ-3Em"/>
                             <constraint firstItem="pje-Dv-rfr" firstAttribute="leading" secondItem="2Di-tC-CJi" secondAttribute="leadingMargin" constant="-20" id="G6u-W9-vsS"/>
                             <constraint firstItem="3oj-RI-RHN" firstAttribute="top" secondItem="pje-Dv-rfr" secondAttribute="bottom" constant="-20" id="RsQ-vx-kAU"/>
-                            <constraint firstItem="pje-Dv-rfr" firstAttribute="top" secondItem="lX0-qJ-aZQ" secondAttribute="bottom" constant="20" id="icc-71-iR9"/>
+                            <constraint firstItem="pje-Dv-rfr" firstAttribute="top" secondItem="lX0-qJ-aZQ" secondAttribute="bottom" constant="-20" id="icc-71-iR9"/>
                         </constraints>
                     </view>
                     <connections>

@@ -14,8 +14,8 @@ class EditMemeViewController: UIViewController, UINavigationControllerDelegate, 
     let defaultTopText = "TOP"
     let defaultBottomText = "BOTTOM"
     var permitAutoRotate = true
-    
-   
+    var passedImage : UIImage?
+    var passedTopText, passedBottomText : String?
     
     
     @IBOutlet var imageViewer: UIImageView!
@@ -44,14 +44,19 @@ class EditMemeViewController: UIViewController, UINavigationControllerDelegate, 
         presentViewController(pickController, animated: true, completion: nil)
     }
     
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
+    func setUIWithImage(image: UIImage) {
         imageViewer.contentMode = .ScaleAspectFit
         imageViewer.image = image
-        dismissViewControllerAnimated(true, completion: nil)
         topTextField.hidden = false
         bottomTextField.hidden = false
         instructionsLabel.hidden = true
         shareButton.enabled = true
+       
+    }
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
+        dismissViewControllerAnimated(true, completion: nil)
+        setUIWithImage(image)
     }
 
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
@@ -152,6 +157,15 @@ class EditMemeViewController: UIViewController, UINavigationControllerDelegate, 
         self.tabBarController?.tabBar.hidden = true
         self.navigationController?.navigationBar.hidden = true
         subscribeToKeyboardShowNotifications()
+        if let topText = passedTopText {
+            topTextField.text = topText
+        }
+        if let bottomText = passedBottomText {
+            bottomTextField.text = bottomText
+        }
+        if let image = passedImage {
+            setUIWithImage(image)
+        }
     }
     
     override func viewDidDisappear(animated: Bool) {

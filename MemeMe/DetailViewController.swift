@@ -13,13 +13,16 @@ class DetailViewController: UIViewController {
     
     @IBOutlet var detailViewImage: UIImageView!
     
-    var memedImageToDisplay: UIImage?
+    var meme: Meme?
     
     override func viewDidLoad() {
         
-        if let image = memedImageToDisplay {
+        let b = UIBarButtonItem(title: "Edit", style: .Plain, target: self, action: "editImage")
+        self.navigationItem.rightBarButtonItem = b
+        
+        if let meme = meme {
             detailViewImage.contentMode = .ScaleAspectFit
-            detailViewImage.image = image
+            detailViewImage.image = meme.memedImage
         }
     }
     
@@ -27,5 +30,18 @@ class DetailViewController: UIViewController {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.hidden = true
         self.navigationController?.navigationBar.hidden = false
+    }
+    
+    func editImage() {
+
+        let editController = self.storyboard!.instantiateViewControllerWithIdentifier("EditMemeViewController") as! EditMemeViewController
+        if let meme = meme {
+            editController.passedTopText = meme.topText
+            editController.passedBottomText = meme.bottomText
+            editController.passedImage = meme.originalImage
+        }
+        
+        self.navigationController!.pushViewController(editController, animated: true)
+
     }
 }

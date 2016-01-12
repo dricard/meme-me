@@ -87,7 +87,7 @@ class CollectionViewController: UICollectionViewController {
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         let detailController = self.storyboard!.instantiateViewControllerWithIdentifier("DetailViewController") as! DetailViewController
-        detailController.memedImageToDisplay = gMemes.memes[indexPath.row].memedImage
+        detailController.meme = gMemes.memes[indexPath.row]
         
         self.navigationController!.pushViewController(detailController, animated: true)
     }
