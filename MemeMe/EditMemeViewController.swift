@@ -160,9 +160,11 @@ class EditMemeViewController: UIViewController, UINavigationControllerDelegate, 
         subscribeToKeyboardShowNotifications()
         if let topText = passedTopText {
             topTextField.text = topText
+            passedTopText = nil
         }
         if let bottomText = passedBottomText {
             bottomTextField.text = bottomText
+            passedBottomText = nil
         }
         if let image = passedImage {
             setUIWithImage(image)
