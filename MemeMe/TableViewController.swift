@@ -44,5 +44,12 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
         let numberOfMemes = gMemes.memes.count
             return numberOfMemes
     }
+    
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if editingStyle == UITableViewCellEditingStyle.Delete {
+            let _ = gMemes.memes.removeAtIndex(indexPath.row)
+            self.tableView.reloadData()
+        }
+    }
 
 }
