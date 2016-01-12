@@ -71,7 +71,7 @@
             </objects>
             <point key="canvasLocation" x="1452" y="-43"/>
         </scene>
-        <!--Sent Memes-->
+        <!--Collection View Controller-->
         <scene sceneID="Qs8-1J-Vki">
             <objects>
                 <collectionViewController id="2p7-Me-KOT" customClass="CollectionViewController" customModule="MemeMe" customModuleProvider="target" sceneMemberID="viewController">
@@ -119,7 +119,7 @@
                             <outlet property="delegate" destination="2p7-Me-KOT" id="MpH-Th-kzq"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" title="Sent Memes" id="Xww-Vq-e5y">
+                    <navigationItem key="navigationItem" id="Xww-Vq-e5y">
                         <barButtonItem key="rightBarButtonItem" title="Item" systemItem="add" id="uwG-dy-2Is">
                             <connections>
                                 <segue destination="Sa6-yv-L5D" kind="show" id="pO4-as-pzE"/>
@@ -148,8 +148,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pje-Dv-rfr">
-                                <rect key="frame" x="57" y="64" width="486" height="471"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pje-Dv-rfr">
+                                <rect key="frame" x="0.0" y="40" width="600" height="580"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="200" id="DFm-U1-2af"/>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="hhR-zc-RgN"/>
@@ -158,12 +158,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" relation="lessThanOrEqual" secondItem="pje-Dv-rfr" secondAttribute="trailing" constant="20" id="67H-aZ-3Em"/>
-                            <constraint firstItem="pje-Dv-rfr" firstAttribute="centerX" secondItem="2Di-tC-CJi" secondAttribute="centerX" id="793-2R-SBu"/>
-                            <constraint firstItem="pje-Dv-rfr" firstAttribute="leading" relation="lessThanOrEqual" secondItem="2Di-tC-CJi" secondAttribute="leadingMargin" constant="20" id="G6u-W9-vsS"/>
-                            <constraint firstItem="3oj-RI-RHN" firstAttribute="top" relation="lessThanOrEqual" secondItem="pje-Dv-rfr" secondAttribute="bottom" constant="10" id="RsQ-vx-kAU"/>
-                            <constraint firstItem="pje-Dv-rfr" firstAttribute="top" relation="lessThanOrEqual" secondItem="lX0-qJ-aZQ" secondAttribute="bottom" constant="10" id="icc-71-iR9"/>
-                            <constraint firstItem="pje-Dv-rfr" firstAttribute="centerY" secondItem="2Di-tC-CJi" secondAttribute="centerY" id="rvQ-7M-BgD"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="pje-Dv-rfr" secondAttribute="trailing" constant="-20" id="67H-aZ-3Em"/>
+                            <constraint firstItem="pje-Dv-rfr" firstAttribute="leading" secondItem="2Di-tC-CJi" secondAttribute="leadingMargin" constant="-20" id="G6u-W9-vsS"/>
+                            <constraint firstItem="3oj-RI-RHN" firstAttribute="top" secondItem="pje-Dv-rfr" secondAttribute="bottom" constant="-20" id="RsQ-vx-kAU"/>
+                            <constraint firstItem="pje-Dv-rfr" firstAttribute="top" secondItem="lX0-qJ-aZQ" secondAttribute="bottom" constant="20" id="icc-71-iR9"/>
                         </constraints>
                     </view>
                     <connections>
@@ -193,13 +191,19 @@
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="200" id="FoB-RP-PFs"/>
                                 </constraints>
                             </imageView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MfV-fQ-Vip">
-                                <rect key="frame" x="150" y="420" width="300" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MfV-fQ-Vip">
+                                <rect key="frame" x="-20" y="512" width="640" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="98A-4P-Xcf"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="u7J-oj-NMx">
-                                <rect key="frame" x="150" y="150" width="300" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="u7J-oj-NMx">
+                                <rect key="frame" x="-20" y="64" width="640" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="wEN-kG-sLf"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
                             </textField>
@@ -224,8 +228,8 @@
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="J44-v0-S39"/>
                                 </items>
                             </toolbar>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jt9-Oe-ba5">
-                                <rect key="frame" x="150" y="277" width="300" height="46"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jt9-Oe-ba5">
+                                <rect key="frame" x="150" y="280" width="300" height="41"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="56L-Z7-cvm"/>
                                 </constraints>
@@ -261,6 +265,7 @@ or take a picture</string>
                             <constraint firstItem="uQG-gK-5Dc" firstAttribute="top" secondItem="K5x-rF-ebW" secondAttribute="bottom" constant="44" id="81d-Mj-MWA"/>
                             <constraint firstItem="Jt9-Oe-ba5" firstAttribute="centerX" secondItem="UOQ-ZS-eaH" secondAttribute="centerX" id="JVa-gR-YBC"/>
                             <constraint firstItem="uQG-gK-5Dc" firstAttribute="bottom" secondItem="66n-df-gSy" secondAttribute="top" constant="-44" id="K0a-kg-YHF"/>
+                            <constraint firstItem="MfV-fQ-Vip" firstAttribute="width" secondItem="uQG-gK-5Dc" secondAttribute="width" id="ND5-IR-N6G"/>
                             <constraint firstAttribute="trailing" secondItem="uQG-gK-5Dc" secondAttribute="trailing" constant="-20" id="NYm-Us-mle"/>
                             <constraint firstItem="Jt9-Oe-ba5" firstAttribute="centerY" secondItem="UOQ-ZS-eaH" secondAttribute="centerY" id="Pxu-1h-yyX"/>
                             <constraint firstItem="u7J-oj-NMx" firstAttribute="top" secondItem="uQG-gK-5Dc" secondAttribute="top" id="VJf-cy-Wuv"/>
@@ -339,6 +344,6 @@ or take a picture</string>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="pO4-as-pzE"/>
+        <segue reference="VyI-Hd-Y7f"/>
     </inferredMetricsTieBreakers>
 </document>
