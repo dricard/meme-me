@@ -88,21 +88,39 @@ class EditMemeViewController: UIViewController, UINavigationControllerDelegate, 
         gMemes.memes.append(meme)
     }
     
+    func orientationIsLandscape() -> Bool {
+        return view.frame.height < view.frame.width
+    }
+    
     func generateMemedImage() -> UIImage {
         
         // First we hide the toolbars
         topToolBar.hidden = true
         bottomToolBar.hidden = true
         
-        UIGraphicsBeginImageContext(view.frame.size)
+        // We get some measures for the crop we'll need to do after the screen grab
+        let crop = topToolBar.frame.height
+        let statusCrop: CGFloat = ( orientationIsLandscape() ? 0 : 20)
+        
+        let contextSize = view.frame.size
+        
+        // This is the screen grab
+        UIGraphicsBeginImageContext(contextSize)
         
         view.layer.renderInContext(UIGraphicsGetCurrentContext()!)
-        let memedImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()
+
+        let uncroppedImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()
         
         UIGraphicsEndImageContext()
         
+        // we're done with the screen grab, replace the tool bars
         topToolBar.hidden = false
         bottomToolBar.hidden = false
+        
+        // Now crop the image to remove the parts that the tool bars were in
+        let cropRect = CGRectMake(0 , crop + statusCrop, view.frame.size.width, view.frame.size.height - 2 * crop - statusCrop)
+        let croppedImage = CGImageCreateWithImageInRect(uncroppedImage.CGImage, cropRect)
+        let memedImage = UIImage(CGImage: croppedImage!)
         
         return memedImage
     }
