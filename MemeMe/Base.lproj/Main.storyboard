@@ -102,7 +102,6 @@
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
-                                <color key="backgroundColor" red="1" green="0.5375728662" blue="0.70902511300000004" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="vn5-r3-k7i" firstAttribute="leading" secondItem="GOp-V2-pQG" secondAttribute="leading" id="CfL-Kx-HcK"/>
                                     <constraint firstItem="vn5-r3-k7i" firstAttribute="trailing" secondItem="GOp-V2-pQG" secondAttribute="trailing" id="Veu-56-Zjo"/>
@@ -310,7 +309,7 @@ or take a picture</string>
         <scene sceneID="5AL-Wh-tJy">
             <objects>
                 <navigationController id="oSr-wi-avn" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Collection" id="xWe-tf-ccD"/>
+                    <tabBarItem key="tabBarItem" title="Collection" image="collectionView" id="xWe-tf-ccD"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="0aH-SI-ibg">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -328,7 +327,7 @@ or take a picture</string>
         <scene sceneID="RnH-0p-vaK">
             <objects>
                 <navigationController id="ebh-Ig-XKH" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Table" id="3FH-Kq-es2"/>
+                    <tabBarItem key="tabBarItem" title="Table" image="tableView" id="3FH-Kq-es2"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="gew-0r-FgK">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -343,7 +342,11 @@ or take a picture</string>
             <point key="canvasLocation" x="632" y="-43"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="collectionView" width="25" height="25"/>
+        <image name="tableView" width="25" height="25"/>
+    </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="VyI-Hd-Y7f"/>
+        <segue reference="pO4-as-pzE"/>
     </inferredMetricsTieBreakers>
 </document>

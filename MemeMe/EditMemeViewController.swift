@@ -106,6 +106,7 @@ class EditMemeViewController: UIViewController, UINavigationControllerDelegate, 
         // We get some measures for the crop we'll need to do after the screen grab
         let crop = topToolBar.frame.height
         let statusCrop: CGFloat = ( orientationIsLandscape() ? 0 : 20)
+        let trim : CGFloat = 2
         
         let contextSize = view.frame.size
         
@@ -123,7 +124,7 @@ class EditMemeViewController: UIViewController, UINavigationControllerDelegate, 
         bottomToolBar.hidden = false
         
         // Now crop the image to remove the parts that the tool bars were in
-        let cropRect = CGRectMake(0 , crop + statusCrop, view.frame.size.width, view.frame.size.height - 2 * crop - statusCrop)
+        let cropRect = CGRectMake(trim , crop + statusCrop, view.frame.size.width - 2 * trim, view.frame.size.height - 2 * crop - statusCrop)
         let croppedImage = CGImageCreateWithImageInRect(uncroppedImage.CGImage, cropRect)
         let memedImage = UIImage(CGImage: croppedImage!)
         

@@ -17,12 +17,6 @@ class CollectionViewController: UICollectionViewController {
     var screenWidth:CGFloat=0
     var screenHeight:CGFloat=0
 
-    func viewDidload() {
-        super.viewDidLoad()
-
-        print("THIS IS NEVER CALLED")
-        
-     }
     
     override func didRotateFromInterfaceOrientation(fromInterfaceOrientation: UIInterfaceOrientation) {
         getScreenSize()
@@ -33,7 +27,6 @@ class CollectionViewController: UICollectionViewController {
     func getScreenSize(){
         screenWidth = self.view.frame.size.width
         screenHeight = self.view.frame.size.height
-        print("SCREEN RESOLUTION: "+screenWidth.description+" x "+screenHeight.description)
     }
     
     func setTheFlowLayout() {
@@ -44,15 +37,9 @@ class CollectionViewController: UICollectionViewController {
         if screenHeight > screenWidth {
             dimensionX = (screenWidth - (1 * space)) / 2.0
             dimensionY = (screenHeight - (5 * space)) / 4.0
-            
-            print("PROTRAIT: screen width = \(screenWidth); screen height = \(screenHeight); dimensionX = \(dimensionX); dimensionY = \(dimensionY)")
-            
         } else {
             dimensionY = (screenHeight - self.tabBarController!.tabBar.frame.size.height - (2 * space)) / 2.0
-            dimensionX = (screenWidth - (5 * space)) / 4.0
-            
-            print("LANDSCAPE: screen width = \(screenWidth); screen height = \(screenHeight); dimensionX = \(dimensionX); dimensionY = \(dimensionY)")
-            
+            dimensionX = (screenWidth - (5 * space)) / 4.0          
         }
 
         
