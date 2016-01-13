@@ -82,6 +82,7 @@ class EditMemeViewController: UIViewController, UINavigationControllerDelegate, 
                 print("Activity: \(activity) Success: \(success) Items: \(items) Error: \(error)")
             }
             if success {
+                // self is required here because it's a closure
                 self.save()
             }
         }
@@ -158,6 +159,12 @@ class EditMemeViewController: UIViewController, UINavigationControllerDelegate, 
         tabBarController?.tabBar.hidden = true
         navigationController?.navigationBar.hidden = true
         subscribeToKeyboardShowNotifications()
+        // Here is some code for when this is called from the detail view. Instead of presenting
+        // an empty view and letting the user choose Album or Take a picture, here we must
+        // set-up the interface with an already made meme. So the first time true ViewWillAppear
+        // we set those up (picture and text) but then we return the variables to nil so that
+        // the modifications made by the user in the interface is not overwritten the nest time
+        // we come to view will appear (after sharing for instance)
         if let topText = passedTopText {
             topTextField.text = topText
             passedTopText = nil
