@@ -16,9 +16,9 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        self.tabBarController?.tabBar.hidden = false
-        self.navigationController?.navigationBar.hidden = false
-        self.tableView.reloadData()
+        tabBarController?.tabBar.hidden = false
+        navigationController?.navigationBar.hidden = false
+        tableView.reloadData()
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -34,10 +34,9 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        let detailController = self.storyboard!.instantiateViewControllerWithIdentifier("DetailViewController") as! DetailViewController
+        let detailController = storyboard!.instantiateViewControllerWithIdentifier("DetailViewController") as! DetailViewController
         detailController.meme = gMemes.memes[indexPath.row]
-        
-        self.navigationController!.pushViewController(detailController, animated: true)
+        navigationController!.pushViewController(detailController, animated: true)
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -48,7 +47,7 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == UITableViewCellEditingStyle.Delete {
             let _ = gMemes.memes.removeAtIndex(indexPath.row)
-            self.tableView.reloadData()
+            tableView.reloadData()
         }
     }
 

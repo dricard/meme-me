@@ -18,7 +18,7 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         
         let b = UIBarButtonItem(title: "Edit", style: .Plain, target: self, action: "editImage")
-        self.navigationItem.rightBarButtonItem = b
+        navigationItem.rightBarButtonItem = b
         
         if let meme = meme {
             detailViewImage.contentMode = .ScaleAspectFit
@@ -28,20 +28,20 @@ class DetailViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        self.tabBarController?.tabBar.hidden = true
-        self.navigationController?.navigationBar.hidden = false
+        tabBarController?.tabBar.hidden = true
+        navigationController?.navigationBar.hidden = false
     }
     
     func editImage() {
 
-        let editController = self.storyboard!.instantiateViewControllerWithIdentifier("EditMemeViewController") as! EditMemeViewController
+        let editController = storyboard!.instantiateViewControllerWithIdentifier("EditMemeViewController") as! EditMemeViewController
         if let meme = meme {
             editController.passedTopText = meme.topText
             editController.passedBottomText = meme.bottomText
             editController.passedImage = meme.originalImage
         }
         
-        self.navigationController!.pushViewController(editController, animated: true)
+        navigationController!.pushViewController(editController, animated: true)
 
     }
 }

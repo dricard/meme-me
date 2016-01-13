@@ -65,7 +65,7 @@ class EditMemeViewController: UIViewController, UINavigationControllerDelegate, 
 
     @IBAction func useDidCancel(sender: AnyObject) {
         resetInterface()
-        if let navigationController = self.navigationController {
+        if let navigationController = navigationController {
             navigationController.popViewControllerAnimated(true)
         }
     }
@@ -155,8 +155,8 @@ class EditMemeViewController: UIViewController, UINavigationControllerDelegate, 
         if !cameraButton.enabled {
             instructionsLabel.text = "Choose an image from the Album \n(no camera on this device)"
         }
-        self.tabBarController?.tabBar.hidden = true
-        self.navigationController?.navigationBar.hidden = true
+        tabBarController?.tabBar.hidden = true
+        navigationController?.navigationBar.hidden = true
         subscribeToKeyboardShowNotifications()
         if let topText = passedTopText {
             topTextField.text = topText
@@ -174,7 +174,7 @@ class EditMemeViewController: UIViewController, UINavigationControllerDelegate, 
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
         unsubscribeToKeyboardShowNotifications()
-        self.navigationController?.navigationBar.hidden = false
+        navigationController?.navigationBar.hidden = false
     }
     
     override func shouldAutorotate() -> Bool {

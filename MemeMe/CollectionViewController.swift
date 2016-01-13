@@ -38,7 +38,7 @@ class CollectionViewController: UICollectionViewController {
             dimensionX = (screenWidth - (1 * space)) / 2.0
             dimensionY = (screenHeight - (5 * space)) / 4.0
         } else {
-            dimensionY = (screenHeight - self.tabBarController!.tabBar.frame.size.height - (2 * space)) / 2.0
+            dimensionY = (screenHeight - tabBarController!.tabBar.frame.size.height - (2 * space)) / 2.0
             dimensionX = (screenWidth - (5 * space)) / 4.0          
         }
 
@@ -51,12 +51,12 @@ class CollectionViewController: UICollectionViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        self.tabBarController?.tabBar.hidden = false
-        self.navigationController?.navigationBar.hidden = false
+        tabBarController?.tabBar.hidden = false
+        navigationController?.navigationBar.hidden = false
         getScreenSize()
         setTheFlowLayout()
         
-        self.aCollectionView.reloadData()
+        aCollectionView.reloadData()
         
     }
     
@@ -73,10 +73,10 @@ class CollectionViewController: UICollectionViewController {
     }
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        let detailController = self.storyboard!.instantiateViewControllerWithIdentifier("DetailViewController") as! DetailViewController
+        let detailController = storyboard!.instantiateViewControllerWithIdentifier("DetailViewController") as! DetailViewController
         detailController.meme = gMemes.memes[indexPath.row]
         
-        self.navigationController!.pushViewController(detailController, animated: true)
+        navigationController!.pushViewController(detailController, animated: true)
     }
     
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
