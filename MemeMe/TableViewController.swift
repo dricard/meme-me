@@ -11,8 +11,11 @@ import UIKit
 
 class TableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
+    // MARK: Outlets
     
     @IBOutlet weak var tableView: UITableView!
+    
+    // MARK: Lyfe Cycle
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -20,6 +23,8 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
         navigationController?.navigationBar.hidden = false
         tableView.reloadData()
     }
+    
+    // MARK: TableView delegates
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("SentMemeTableViewCell", forIndexPath: indexPath)
@@ -29,7 +34,6 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
         cell.imageView!.image = meme.memedImage
         
         return cell
-        
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -41,7 +45,7 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let numberOfMemes = gMemes.memes.count
-            return numberOfMemes
+        return numberOfMemes
     }
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
