@@ -11,17 +11,35 @@ import UIKit
 
 class CollectionViewController: UICollectionViewController {
     
-    @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
-    @IBOutlet weak var aCollectionView: UICollectionView!
+    // MARK: Properties
     
     var screenWidth:CGFloat=0
     var screenHeight:CGFloat=0
-
+    
+    // MARK: Outlets
+    
+    @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
+    @IBOutlet weak var aCollectionView: UICollectionView!
+    
+    // MARK: Lyfe Cycle
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        tabBarController?.tabBar.hidden = false
+        navigationController?.navigationBar.hidden = false
+        getScreenSize()
+        setTheFlowLayout()
+        
+        aCollectionView.reloadData()
+        
+    }
+    
+    
+    // MARK: Utilities
     
     override func didRotateFromInterfaceOrientation(fromInterfaceOrientation: UIInterfaceOrientation) {
         getScreenSize()
         setTheFlowLayout()
-
     }
 
     func getScreenSize(){
@@ -49,17 +67,8 @@ class CollectionViewController: UICollectionViewController {
 
     }
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        tabBarController?.tabBar.hidden = false
-        navigationController?.navigationBar.hidden = false
-        getScreenSize()
-        setTheFlowLayout()
-        
-        aCollectionView.reloadData()
-        
-    }
-    
+    // MARK: Collection View Delegates
+   
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("SentMemeCollectionViewCell", forIndexPath: indexPath) as! SentMemeCollectionViewCell
