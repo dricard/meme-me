@@ -11,12 +11,23 @@ import UIKit
 
 class EditMemeViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate {
   
+    // MARK: Properties
+    
     let defaultTopText = "TOP"
     let defaultBottomText = "BOTTOM"
     var permitAutoRotate = true
     var passedImage : UIImage?
     var passedTopText, passedBottomText : String?
     
+    
+    let memeTextAttributes : [ String : AnyObject ] = [
+        NSForegroundColorAttributeName: UIColor.whiteColor(),
+        NSStrokeColorAttributeName: UIColor.blackColor(),
+        NSFontAttributeName: UIFont(name: "Impact", size: 40)!,
+        NSStrokeWidthAttributeName: -3.0
+    ]
+    
+    // MARK: Outlets
     
     @IBOutlet var imageViewer: UIImageView!
     @IBOutlet var topTextField: UITextField!
@@ -28,116 +39,7 @@ class EditMemeViewController: UIViewController, UINavigationControllerDelegate, 
     @IBOutlet var topToolBar: UIToolbar!
     @IBOutlet var bottomToolBar: UIToolbar!
 
-    
-    
-    @IBAction func pickImageFromAlbum(sender: AnyObject) {
-        let pickController = UIImagePickerController()
-        pickController.delegate = self
-        pickController.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
-        presentViewController(pickController, animated: true, completion: nil)
-    }
-
-    @IBAction func takePicture(sender: AnyObject) {
-        let pickController = UIImagePickerController()
-        pickController.delegate = self
-        pickController.sourceType = UIImagePickerControllerSourceType.Camera
-        presentViewController(pickController, animated: true, completion: nil)
-    }
-    
-    func setUIWithImage(image: UIImage) {
-        imageViewer.contentMode = .ScaleAspectFit
-        imageViewer.image = image
-        topTextField.hidden = false
-        bottomTextField.hidden = false
-        instructionsLabel.hidden = true
-        shareButton.enabled = true
-       
-    }
-    
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
-        dismissViewControllerAnimated(true, completion: nil)
-        setUIWithImage(image)
-    }
-
-    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
-        dismissViewControllerAnimated(true, completion: nil)
-    }
-
-    @IBAction func useDidCancel(sender: AnyObject) {
-        resetInterface()
-        if let navigationController = navigationController {
-            navigationController.popViewControllerAnimated(true)
-        }
-    }
-
-    
-    @IBAction func shareMeme(sender: AnyObject) {
-        let textToShare = "Check this meme!"
-        let memedImage = generateMemedImage()
-        let objectsToShare = [ textToShare, memedImage ]
-        let activity = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
-        activity.completionWithItemsHandler = {
-            (activity, success, items, error) in
-            if let _ = error {
-                print("Activity: \(activity) Success: \(success) Items: \(items) Error: \(error)")
-            }
-            if success {
-                // self is required here because it's a closure
-                self.save()
-            }
-        }
-        presentViewController(activity, animated: true, completion: nil)
-    }
-    
-    func save() {
-        let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, memedImage: generateMemedImage(), originalImage: imageViewer.image!)
-        gMemes.memes.append(meme)
-    }
-    
-    func orientationIsLandscape() -> Bool {
-        return view.frame.height < view.frame.width
-    }
-    
-    func generateMemedImage() -> UIImage {
-        
-        // First we hide the toolbars
-        topToolBar.hidden = true
-        bottomToolBar.hidden = true
-        
-        // We get some measures for the crop we'll need to do after the screen grab
-        let crop = topToolBar.frame.height
-        let statusCrop: CGFloat = ( orientationIsLandscape() ? 0 : 20)
-        let trim : CGFloat = 2
-        
-        let contextSize = view.frame.size
-        
-        // This is the screen grab
-        UIGraphicsBeginImageContext(contextSize)
-        
-        view.layer.renderInContext(UIGraphicsGetCurrentContext()!)
-
-        let uncroppedImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()
-        
-        UIGraphicsEndImageContext()
-        
-        // we're done with the screen grab, replace the tool bars
-        topToolBar.hidden = false
-        bottomToolBar.hidden = false
-        
-        // Now crop the image to remove the parts that the tool bars were in
-        let cropRect = CGRectMake(trim , crop + statusCrop, view.frame.size.width - 2 * trim, view.frame.size.height - 2 * crop - statusCrop)
-        let croppedImage = CGImageCreateWithImageInRect(uncroppedImage.CGImage, cropRect)
-        let memedImage = UIImage(CGImage: croppedImage!)
-        
-        return memedImage
-    }
-    
-    let memeTextAttributes : [ String : AnyObject ] = [
-        NSForegroundColorAttributeName: UIColor.whiteColor(),
-        NSStrokeColorAttributeName: UIColor.blackColor(),
-        NSFontAttributeName: UIFont(name: "Impact", size: 40)!,
-        NSStrokeWidthAttributeName: -3.0
-    ]
+    // MARK: Lyce Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -183,6 +85,113 @@ class EditMemeViewController: UIViewController, UINavigationControllerDelegate, 
         unsubscribeToKeyboardShowNotifications()
         navigationController?.navigationBar.hidden = false
     }
+
+    // MARK: User actions
+    
+    @IBAction func pickImageFromAlbum(sender: AnyObject) {
+        let pickController = UIImagePickerController()
+        pickController.delegate = self
+        pickController.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+        presentViewController(pickController, animated: true, completion: nil)
+    }
+
+    @IBAction func takePicture(sender: AnyObject) {
+        let pickController = UIImagePickerController()
+        pickController.delegate = self
+        pickController.sourceType = UIImagePickerControllerSourceType.Camera
+        presentViewController(pickController, animated: true, completion: nil)
+    }
+    
+    @IBAction func useDidCancel(sender: AnyObject) {
+        resetInterface()
+        if let navigationController = navigationController {
+            navigationController.popViewControllerAnimated(true)
+        }
+    }
+    
+    @IBAction func shareMeme(sender: AnyObject) {
+        let textToShare = "Check this meme!"
+        let memedImage = generateMemedImage()
+        let objectsToShare = [ textToShare, memedImage ]
+        let activity = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
+        activity.completionWithItemsHandler = {
+            (activity, success, items, error) in
+            if let _ = error {
+                print("Activity: \(activity) Success: \(success) Items: \(items) Error: \(error)")
+            }
+            if success {
+                // self is required here because it's a closure
+                self.save()
+            }
+        }
+        presentViewController(activity, animated: true, completion: nil)
+    }
+    
+    // MARK: Utilities
+    
+    func setUIWithImage(image: UIImage) {
+        imageViewer.contentMode = .ScaleAspectFit
+        imageViewer.image = image
+        topTextField.hidden = false
+        bottomTextField.hidden = false
+        instructionsLabel.hidden = true
+        shareButton.enabled = true
+        
+    }
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
+        dismissViewControllerAnimated(true, completion: nil)
+        setUIWithImage(image)
+    }
+    
+    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func save() {
+        let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, memedImage: generateMemedImage(), originalImage: imageViewer.image!)
+        gMemes.memes.append(meme)
+    }
+    
+    func generateMemedImage() -> UIImage {
+        
+        // First we hide the toolbars
+        topToolBar.hidden = true
+        bottomToolBar.hidden = true
+        
+        // We get some measures for the crop we'll need to do after the screen grab
+        let crop = topToolBar.frame.height
+        let statusCrop: CGFloat = ( orientationIsLandscape() ? 0 : 20)
+        let trim : CGFloat = 2
+        
+        let contextSize = view.frame.size
+        
+        // This is the screen grab
+        UIGraphicsBeginImageContext(contextSize)
+        
+        view.layer.renderInContext(UIGraphicsGetCurrentContext()!)
+
+        let uncroppedImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()
+        
+        UIGraphicsEndImageContext()
+        
+        // we're done with the screen grab, replace the tool bars
+        topToolBar.hidden = false
+        bottomToolBar.hidden = false
+        
+        // Now crop the image to remove the parts that the tool bars were in
+        let cropRect = CGRectMake(trim , crop + statusCrop, view.frame.size.width - 2 * trim, view.frame.size.height - 2 * crop - statusCrop)
+        let croppedImage = CGImageCreateWithImageInRect(uncroppedImage.CGImage, cropRect)
+        let memedImage = UIImage(CGImage: croppedImage!)
+        
+        return memedImage
+    }
+
+    // MARK: Interface
+    
+    func orientationIsLandscape() -> Bool {
+        return view.frame.height < view.frame.width
+    }
     
     override func shouldAutorotate() -> Bool {
         // Lock autorotate as appropriate (i.e., while editing text field)
@@ -198,6 +207,8 @@ class EditMemeViewController: UIViewController, UINavigationControllerDelegate, 
         instructionsLabel.hidden = false
         shareButton.enabled = false
     }
+    
+    // MARK: Text Field Delegates
     
     func textFieldDidBeginEditing(textField: UITextField) {
         // if default text is still in the text field we clear on begin editing, otherwise we leave user text
@@ -220,6 +231,8 @@ class EditMemeViewController: UIViewController, UINavigationControllerDelegate, 
         return true
     }
     
+    // MARK: Keyboard utilities
+    
     func keyboardWillShow(notification: NSNotification) {
         if bottomTextField.isFirstResponder() {
             let kbHeight = getKeyboardHeight(notification)
@@ -240,7 +253,7 @@ class EditMemeViewController: UIViewController, UINavigationControllerDelegate, 
     }
     
     func subscribeToKeyboardShowNotifications() {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(EditMemeViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
     }
     
     func unsubscribeToKeyboardShowNotifications() {
@@ -248,7 +261,7 @@ class EditMemeViewController: UIViewController, UINavigationControllerDelegate, 
     }
     
     func subscribeToKeyboardHideNotification() {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide:", name: UIKeyboardWillHideNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(EditMemeViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
     }
     
     func unsubscribeToKeyboardHideNotification() {
