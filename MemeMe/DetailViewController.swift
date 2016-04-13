@@ -10,10 +10,16 @@ import Foundation
 import UIKit
 
 class DetailViewController: UIViewController {
+   
+    // MARK: Properties
+    
+    var meme: Meme?
+    
+    // MARK: Outlets
     
     @IBOutlet var detailViewImage: UIImageView!
     
-    var meme: Meme?
+    // MARK: Lyfe Cycle
     
     override func viewDidLoad() {
         
@@ -31,6 +37,8 @@ class DetailViewController: UIViewController {
         tabBarController?.tabBar.hidden = true
         navigationController?.navigationBar.hidden = false
     }
+    
+    // MARK: Utilities
     
     func editImage() {
 
